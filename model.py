@@ -105,15 +105,12 @@ class CDWnet:
 
     def process_light_stream(self, stream_path):
         cap = cv2.VideoCapture(stream_path)
-        count = 0
         while cap.isOpened():
-            count += 1
-            print(count)
             success, frame = cap.read()
             if not success:
                 break
 
-            result = self.light_model(image_path, verbose=False, conf = self.model_conf)
+            result = self.light_model(frame, verbose=False, conf = self.model_conf)
             detection_results = self.handle_result(result, frame)
             
             if detection_results:
