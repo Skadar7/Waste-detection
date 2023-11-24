@@ -2,6 +2,7 @@ import cv2
 from os import listdir
 from os.path import isfile, join
 import numpy as np
+import base64
 
 def post_process(detetction_result: list) -> str:
     """
@@ -19,11 +20,11 @@ def post_process(detetction_result: list) -> str:
 
 def crop_video(dir_path: str, save_path: str):
     """
-    crop_video Обрезка видео до промежутка от 2:00 до 2:15
+    crop_video Вырезаем кадр из видео (для сбора датасета)
 
     Args:
         dir_path (str): Директория с оригинальными видео
-        save_path (str): Директория с обрезанными видео
+        save_path (str): Целевая директория
     """
     files = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
 
@@ -61,3 +62,17 @@ def plot_boxes(frame: np.ndarray, xyxy: list, label: str) -> np.ndarray:
     frame = cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 1)
     frame = cv2.putText(frame, label, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
     return frame
+
+def convert_to_base64(frame: np.ndarray) -> str:
+    """
+    convert_to_base64 Кодирование изображения в base64 
+
+    Args:
+        frame (np.ndarray): изображение
+
+    Returns:
+        str: зашифрованное изображение
+    """
+    success, buffer = cv2.imencode('.jpg', frame)
+    base64_img = base64.b64encode(buffer)
+    return base64_img

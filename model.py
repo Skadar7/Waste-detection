@@ -2,7 +2,6 @@ import cv2
 from ultralytics import YOLO
 import torch
 from utils import *
-import base64
 import numpy as np
 
 
@@ -107,10 +106,7 @@ class CDWnet:
                 detection_results[4], detection_results[2], detection_results[3]
             )
 
-        # зашифровываем кадр в base64 для отправки на сервер
-        success, buffer = cv2.imencode(".jpg", frame)
-        base64_img = base64.b64encode(buffer)
-
+        base64_img = convert_to_base64(frame)
         return final_class, base64_img
 
     def process_hard(self, video_path: str) -> dict:
@@ -193,7 +189,7 @@ class CDWnet:
             if detection_results:
                 yield self.post_process(detection_results)
             else:
-                yield None, None
+                yield None, convert_to_base64(frame)
 
     def predict(self, path: str, mode: str = "hard_mode") -> tuple:
         """
