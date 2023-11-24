@@ -104,10 +104,8 @@ class CDWnet:
         return detection_results
 
     def process_light_stream(self, stream_path):
-        print('function call')
         cap = cv2.VideoCapture(stream_path)
         count = 0
-        print('in')
         while cap.isOpened():
             count += 1
             print(count)
