@@ -1,13 +1,30 @@
 import cv2
 from os import listdir
 from os.path import isfile, join
+import numpy as np
 
-def post_process(detetction_result):
+def post_process(detetction_result: list) -> str:
+    """
+    post_process Определение класса видео по меткам класса кадров
+
+    Args:
+        detetction_result (list): метки классов кадров
+
+    Returns:
+        str: класс видео
+    """
     vals = list(detetction_result.values())
     final_class = max(vals,key=vals.count)
     return final_class
 
-def crop_video(dir_path, save_path):
+def crop_video(dir_path: str, save_path: str):
+    """
+    crop_video Обрезка видео до промежутка от 2:00 до 2:15
+
+    Args:
+        dir_path (str): Директория с оригинальными видео
+        save_path (str): Директория с обрезанными видео
+    """
     files = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
 
     for path in files:
@@ -22,7 +39,18 @@ def crop_video(dir_path, save_path):
         except:
             continue
 
-def plot_boxes(frame, xyxy, label):  # plot detected class box
+def plot_boxes(frame: np.ndarray, xyxy: list, label: str) -> np.ndarray:
+    """
+    plot_boxes Отрисовка бокса, полученного после детекции
+
+    Args:
+        frame (np.ndarray): кадр
+        xyxy (list): координаты бокса
+        label (str): метка класса
+
+    Returns:
+        np.ndarray: кадр с отрисованным боксом
+    """
     x1 = int(xyxy[0])
     y1 = int(xyxy[1])
     x2 = int(xyxy[2])
