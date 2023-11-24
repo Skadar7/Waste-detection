@@ -67,9 +67,7 @@ class CDWnet:
             final_class = detection_results[0]
             frame = plot_boxes(detection_results[4], detection_results[2], detection_results[3])
 
-        success, buffer = cv2.imencode('.jpg', frame)
-        base64_img = base64.b64encode(buffer)
-
+        base64_img = convert_to_base64(frame)
         return final_class, base64_img
 
     def process_hard(self, video_path):
@@ -119,7 +117,7 @@ class CDWnet:
             if detection_results:
                 yield self.post_process(detection_results)
             else:
-                yield None, None
+                yield None, convert_to_base64(frame)
 
     def predict(self, path, mode = 'hard_mode'):
         self.detection_mode = mode
