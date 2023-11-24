@@ -5,9 +5,12 @@ from utils import *
 import base64
 
 class CDWnet:
-    def __init__(self, hard_model, light_model = None):
+    def __init__(self, hard_model = None, light_model = None):
         self.light_model_path = light_model
         self.hard_model_path = hard_model
+        self.light_model = None
+        self.hard_model = None
+        
         self.cuda_flag = False
         self.detect_model_classes = None
         self.detection_mode = None
