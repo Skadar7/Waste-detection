@@ -41,7 +41,7 @@
 ```Bash
 git clone https://github.com/Skadar7/Waste-detection.git
 ```
-2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1iQRcneyDnb3q7LZ9wcGfkDt3W5zAKjwD?usp=sharing и разместите их в папках ```model/weights``` и ```modelStream/weights```
+2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing и разместите их в папках ```model/weights``` и ```modelStream/weights```
 
 3. Запуск контейнеров и сервера стриминга:
 ```Bash
@@ -90,5 +90,5 @@ python3 serverStream.py
 
 ## <a name="7">Ссылки </a>
 
-- [ссылка на веса модели детекции](https://drive.google.com/drive/folders/1iQRcneyDnb3q7LZ9wcGfkDt3W5zAKjwD?usp=sharing)&nbsp;
-- [ссылка на скринкаст](https://drive.google.com/file/d/1Md4uNQFHtO_w9xxaigyc6ftbF0Tru6qk/view?usp=sharing)&nbsp;
+- [ссылка на веса модели детекции](https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing)&nbsp;
+- [ссылка на скринкаст]()&nbsp;
