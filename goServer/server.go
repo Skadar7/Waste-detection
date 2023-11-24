@@ -16,8 +16,8 @@ import (
 	"github.com/xuri/excelize/v2"
 )
 
-var host ="model"
-//var host ="localhost"
+//var host ="model"
+var host ="localhost"
 
 var clients map[*websocket.Conn]bool
 
@@ -55,10 +55,9 @@ func wsHandler(w http.ResponseWriter,r *http.Request,id string){
 }
 
 func writeMessagesToJs(mess []byte){
-  //log.Println(len(clients))
+  //log.Println(string(mess)[:70])
   for conn := range clients {
 		conn.WriteMessage(websocket.TextMessage, mess)
-    
 	}
 }
 
@@ -99,6 +98,8 @@ func main() {
     log.Println(id)
     go wsHandler(c.Writer,c.Request,id)
   })
+
+
   r.GET("/start", func(c *gin.Context) {
     
     resp, err := http.Get("http://"+host+":5000/start") 

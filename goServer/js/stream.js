@@ -20,9 +20,14 @@ socket.onopen = function() {
 
     jsonn = JSON.parse(event.data);
 
-    let f = document.getElementById("f")
-    f.textContent = jsonn["f"]
-    f.style.color = "red"
+    //let f = document.getElementById("f")
+    //f.textContent = jsonn["f"]
+    //f.style.color = "red"
+    //console.log(jsonn["result"])
+    //console.log(jsonn["b64"])
+    if(jsonn["b64"] == "None"){
+      console.log(jsonn["b64"])
+    }
     document.getElementById("content").src = jsonn["b64"]
     //console.log(event.data);
   };

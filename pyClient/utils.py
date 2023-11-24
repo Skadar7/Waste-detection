@@ -1,10 +1,12 @@
+import base64
 import cv2
+from os import listdir
+from os.path import isfile, join
 
 def post_process(detetction_result):
     vals = list(detetction_result.values())
     final_class = max(vals,key=vals.count)
     return final_class
-
 
 def crop_video(dir_path, save_path):
     files = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
@@ -21,7 +23,7 @@ def crop_video(dir_path, save_path):
         except:
             continue
 
-def plot_boxes(frame, xyxy, label):  # plot detected class box
+def plot_boxes(frame, xyxy, label):
     x1 = int(xyxy[0])
     y1 = int(xyxy[1])
     x2 = int(xyxy[2])
@@ -32,3 +34,9 @@ def plot_boxes(frame, xyxy, label):  # plot detected class box
     frame = cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 1)
     frame = cv2.putText(frame, label, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
     return frame
+
+def convert_to_base64(frame):
+    success, buffer = cv2.imencode('.jpg', frame)
+    base64_img = base64.b64encode(buffer)
+    #print(str(base64_img)[0:30])
+    return base64_img
