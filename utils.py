@@ -1,10 +1,11 @@
 import cv2
+from os import listdir
+from os.path import isfile, join
 
 def post_process(detetction_result):
     vals = list(detetction_result.values())
     final_class = max(vals,key=vals.count)
     return final_class
-
 
 def crop_video(dir_path, save_path):
     files = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
