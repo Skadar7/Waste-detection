@@ -20,12 +20,14 @@ class CDWnet:
         if self.light_model_path is not None:
             self.light_model = YOLO(self.light_model_path)
             self.detect_model_classes = self.light_model.names
-            self.light_model.to('cuda') 
+            if self.cuda_flag:
+                self.light_model.to('cuda') 
 
         if self.hard_model_path is not None:
             self.hard_model = YOLO(self.hard_model_path)
             self.detect_model_classes = self.hard_model.names
-            self.hard_model.to('cuda') 
+            if self.cuda_flag:
+                self.hard_model.to('cuda') 
 
     def handle_result(self, result):
         for res in result:
@@ -40,8 +42,10 @@ class CDWnet:
 
                 images_data.append([class_name, confidence, xyxy, label])
         
-        most_conf_class = max(images_data, key = lambda x: x[1])
-        return most_conf_class
+        if images_data:
+            most_conf_class = max(images_data, key = lambda x: x[1])
+            return most_conf_class
+        return None
 
     def post_process(self, detection_results):
         vals = list(detection_results.values())
@@ -86,7 +90,9 @@ class CDWnet:
             if frame_id == last_frame_number:
                 break
             result = self.hard_model(frame, verbose=False, conf = conf)
-            detection_results[frame_id] = self.handle_result(result)
+            hendled_res = self.handle_result(result)
+            if hendled_res:
+                detection_results[frame_id] = self.handle_result(result)
             cap.set(cv2.CAP_PROP_POS_FRAMES, frame_id+frame_skip)
 
         cap.release()
@@ -96,4 +102,7 @@ class CDWnet:
         self.video_path = video_path
         if mode == 'hard_mode':
             result = self.process_hard(video_path)
-            return self.post_process(result)
+            if result:
+                return self.post_process(result)
+            else:
+                return None,None
