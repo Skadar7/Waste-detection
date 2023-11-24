@@ -10,7 +10,7 @@ class CDWnet:
         self.hard_model_path = hard_model
         self.light_model = None
         self.hard_model = None
-        
+
         self.cuda_flag = False
         self.detect_model_classes = None
         self.detection_mode = None
@@ -124,9 +124,9 @@ class CDWnet:
     def predict(self, path, mode = 'hard_mode'):
         self.detection_mode = mode
 
-        if self.detection_mode == 'hard_mode':
+        if self.detection_mode == 'hard_mode' and self.hard_model:
             result = self.process_hard(path)
-        elif self.detection_mode == 'light_mode':
+        elif self.detection_mode == 'light_mode' and self.light_model:
             result = self.process_light(path)
         if result:
             return self.post_process(result)
