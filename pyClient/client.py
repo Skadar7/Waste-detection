@@ -5,10 +5,10 @@ from flask import Flask, request
 import asyncio
 from model import CDWnet
 
-H_MODEL_PATH = "weights/yolo8s_30ep.pt"
+H_MODEL_PATH = "weights/detr-x-10ep-3v.pt"
 VIDEO_PATH = "video/video.mp4"
 app = Flask(__name__)
-model = CDWnet(hard_model=H_MODEL_PATH)
+model = CDWnet(hard_model_path=H_MODEL_PATH)
 
 
 def treatmenImagetVideo(json):

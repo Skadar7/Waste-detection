@@ -1,16 +1,49 @@
+"""
+    Скрипт для заполнения submission в рамках хакатона
+"""
+
+
 from model import CDWnet
 import argparse
 
 parser = argparse.ArgumentParser()
 
-# parser.add_argument('-i', '--input', help='Path to video folder', type=str, default='./data')
-# parser.add_argument('-o', '--output', help='Output csv-file', type=str, default='results.csv')
-# parser.add_argument('-d', '--detection-weights', help='Path to YOLO detection model weights', type=str, default='models/yolo_best.pt')
+parser.add_argument(
+    "-v",
+    "--video-path",
+    help="Path to video",
+    type=str,
+    default="./data/A832OX790_09_19_2023 20_13_22.mp4",
+)
+parser.add_argument(
+    "-i",
+    "--image-path",
+    help="Path to image",
+    type=str,
+    default="./data/3340659_concrete.jpg",
+)
+parser.add_argument(
+    "-hd",
+    "--hard-detection-model",
+    help="Path to YOLO detection model weights",
+    type=str,
+    default="./models/yolov8l_e20_b8_im720.pt",
+)
+parser.add_argument(
+    "-ld",
+    "--light-detection-model",
+    help="Path to YOLO detection model weights",
+    type=str,
+    default="./models/yolov8l_e20_b8_im720.pt",
+)
 
 args = parser.parse_args()
 
-H_MODEL_PATH = './models/yolov8l_e20_b8_im720.pt'
-VIDEO_PATH = './data/3554032.mp4'
+model = CDWnet(
+    hard_model=args.hard_detection_model, light_model=args.light_detection_model
+)
 
-model = CDWnet(hard_model=H_MODEL_PATH)
-res_class = model.predict(VIDEO_PATH)
+class_res, image = model.predict(args.video_path)
+# class_res, image = model.predict(args.image_path, mode='light_mode')
+
+print(f"CDW Class: {class_res}")

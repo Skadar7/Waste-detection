@@ -16,8 +16,11 @@ import (
 	"github.com/xuri/excelize/v2"
 )
 
-//var host ="model"
-var host ="localhost"
+var host ="model"
+var host2 = "stream"
+//var host ="localhost"
+//var host2 = "localhost"
+
 
 var clients map[*websocket.Conn]bool
 
@@ -102,7 +105,7 @@ func main() {
 
   r.GET("/start", func(c *gin.Context) {
     
-    resp, err := http.Get("http://"+host+":5000/start") 
+    resp, err := http.Get("http://"+host2+":7000/start") 
     	if err != nil { 
         	log.Println(err) 
     	}

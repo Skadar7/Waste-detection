@@ -1,5 +1,5 @@
 import cv2
-from ultralytics import YOLO, RTDETR
+from ultralytics import YOLO
 import torch
 from utils import *
 import numpy as np
@@ -43,7 +43,7 @@ class CDWnet:
                 self.light_model.to("cuda")
 
         if self.hard_model_path is not None:
-            self.hard_model = RTDETR(self.hard_model_path)
+            self.hard_model = YOLO(self.hard_model_path)
             self.detect_model_classes = self.hard_model.names
             if self.cuda_flag:
                 self.hard_model.to("cuda")

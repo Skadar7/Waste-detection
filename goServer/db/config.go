@@ -12,8 +12,8 @@ type ConfigDB struct{
 
 func Co() ConfigDB{
 	c := ConfigDB{
-		//Host: "db",
-		Host: "localhost",
+		Host: "db",
+		//Host: "localhost",
 		Port: "5432",
 		DBname: "test_db",
 		User: "root",

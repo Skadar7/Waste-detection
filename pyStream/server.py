@@ -30,4 +30,4 @@ def index():
     asyncio.get_event_loop().run_until_complete(test())
     return 'STREAM START'
 
-app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=7000)

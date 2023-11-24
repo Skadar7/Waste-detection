@@ -5,7 +5,7 @@ from model import CDWnet
 import base64
 
 H_MODEL_PATH = "weights/yolo8s_30ep.pt"
-model = CDWnet(light_model=H_MODEL_PATH,)
+model = CDWnet(light_model_path=H_MODEL_PATH,)
  
 async def sendFrames(ws):
     for i,f in model.process_light_stream("video/video.mp4"):
@@ -25,5 +25,5 @@ async def sendFrames(ws):
     
 async def test():
     print("ws")
-    async with websockets.connect("ws://localhost:8080/ws") as websocket:
+    async with websockets.connect("ws://web:8080/ws") as websocket:
         await sendFrames(websocket)
