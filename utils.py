@@ -1,6 +1,7 @@
 import cv2
 from os import listdir
 from os.path import isfile, join
+import base64
 
 def post_process(detetction_result):
     vals = list(detetction_result.values())

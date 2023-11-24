@@ -2,7 +2,6 @@ import cv2
 from ultralytics import YOLO
 import torch
 from utils import *
-import base64
 
 class CDWnet:
     def __init__(self, hard_model = None, light_model = None):
