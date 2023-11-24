@@ -1,6 +1,8 @@
+import cv2
+
 def post_process(detetction_result):
     vals = list(detetction_result.values())
-    final_class = max(vals,key=vals.count)[0]
+    final_class = max(vals,key=vals.count)
     return final_class
 
 
@@ -18,3 +20,15 @@ def crop_video(dir_path, save_path):
             cv2.imwrite(img_path, frame)
         except:
             continue
+
+def plot_boxes(frame, xyxy, label):  # plot detected class box
+    x1 = int(xyxy[0])
+    y1 = int(xyxy[1])
+    x2 = int(xyxy[2])
+    y2 = int(xyxy[3])
+
+    (w, h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
+    frame = cv2.rectangle(frame, (x1, y1 - 20), (x1 + w, y1), (0, 0, 255), -1)
+    frame = cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 1)
+    frame = cv2.putText(frame, label, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+    return frame
