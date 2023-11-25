@@ -2,7 +2,7 @@
   
 # ЦИФРОВОЙ ПРОРЫВ: СЕЗОН ИИ <br> Распознавание действий человека по видео
 
-<img height="300" alt="logo" src="assets/">
+<img height="300" alt="logo" src="assets/logo.png">
 
 </div> 
 
@@ -25,14 +25,14 @@
 ### Архетиктура решения
 
 <div align="center">
-<img height="300" alt="logo" src="assets/">
+<img height="500" alt="logo" src="assets/solution.png">
 
 **Развертывание модели**
 </div> 
 
 ### Архетиктура модели
 
-<div align="center"><img height="200" alt="модель" src="assets/"></div>
+<div align="center"><img height="300" alt="модель" src="assets/model.png"></div>
 
 ## <a name="3">Запуск кода </a>
 
@@ -41,29 +41,26 @@
 ```Bash
 git clone https://github.com/Skadar7/Waste-detection.git
 ```
-2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing и разместите их в папках ```model/weights``` и ```modelStream/weights```
+2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing. В ```pyClient/weights``` должны находится веса модели для статичного режима работы (рекомендовано **detr-x-10ep-3v.pt**), а в ```modelStream/weights``` – для работы в прямом эфире (рекомендовано **yolo8s_30ep.pt**).
 
 3. Запуск контейнеров и сервера стриминга:
 ```Bash
-cd 
+cd Waste-detection
 docker-compose build
 docker-compose up
-
-cd modelStream
-
-pip3 install -r requirements.txt
-python3 serverStream.py
 ```
 
 ## <a name="4">Уникальность нашего решения </a>
 
-1. 
+1. Быстрая обработка видео за счет обработки наиболее информативных кадров
 
-2. Работает в режиме реального времени.
+2. Возможность обработки в режиме реального времени с применением более быстрой модели
 
-3. 
+3. Использование докера для упрощения развертывания 
 
-4. Удобный веб-интерфейс для работы с моделью.
+4. Автогенерация отчета в формате excel таблицы при обработке статического видео
+
+5. Rest API для легкой интеграции в любую систему
 
 ## <a name="5">Стек </a>
 <div align="center">
@@ -73,7 +70,7 @@ python3 serverStream.py
   <img src="https://github.com/devicons/devicon/blob/master/icons/opencv/opencv-original.svg" title="OpenCV" alt="OpenCV" height="40"/>&nbsp;
   
   <img src="https://pjreddie.com/media/image/yologo_2.png" title="Yolo" alt="Yolo" height="40"/>&nbsp;
-  <img src="https://spacenil.com/tutorial/public/uploads/categories/categories_1599665107.png" title="JS" alt="JS"  height="40"/>&nbsp;
+  <img src="https://fuzeservers.ru/wp-content/uploads/4/7/b/47bf752c2f13d3f13363ea5b624bd2db.png" title="JS" alt="JS"  height="40"/>&nbsp;
   <img src="https://fronty.com/static/uploads/1.11-30.11/languages%20in%202022/go.png" title="GO" alt="GO" height="40"/>&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg"  title="Flask" alt="Flask" height="40"/>
 </div>
@@ -91,4 +88,4 @@ python3 serverStream.py
 ## <a name="7">Ссылки </a>
 
 - [ссылка на веса модели детекции](https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing)&nbsp;
-- [ссылка на скринкаст]()&nbsp;
+- [ссылка на скринкаст](https://www.youtube.com/watch?v=dQw4w9WgXcQ)&nbsp;
