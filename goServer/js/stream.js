@@ -1,6 +1,6 @@
 console.log("js_work")
 
-var socket = new WebSocket("ws://192.168.80.1:4000/ws?id=js");
+var socket = new WebSocket("ws://localhost:8080/ws?id=js");
 
 socket.onopen = function() {
     alert("Соединение установлено.");

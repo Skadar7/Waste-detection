@@ -19,14 +19,19 @@
     </div>
     <div id="container">
         <input type="file" name="f" accept="video/mp4" id = "videoFile" class='input'>
+        <label for="videoFile">Выберите файл</label>
         <!--<button id = "download" onclick="workWithVideo()">Выберите файл</button>-->
         <button id = "sendVideo" onclick="workWithVideo()">Oтправить видео на обработку</button>
     </div>
-    <table class="Result">
-        <thead><tr><th>Результат</th><th>Название файла</th></tr></thead>
-        <tbody><tr><td id ="result">...</td><td id ="video_name">...</td></tr></tbody>
-    </table>
-    <button id = "getData" onclick="getData()">Получить .xls с данными</button>
+    <div id="container1">
+        <button id = "getData" onclick="getData()">Получить .xls с данными</button>
+    </div>
+    <div id ="tableR">
+        <table class="Result">
+            <thead><tr><th>Результат</th><th>Название файла</th></tr></thead>
+            <tbody><tr><td id ="result">...</td><td id ="video_name">...</td></tr></tbody>
+        </table>
+    </div>
 </body>
 <script src="../js/video.js"> </script>
 </html>

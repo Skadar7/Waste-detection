@@ -62,8 +62,14 @@ async function workWithVideo(){
     }
     loadingGif.src = "https://i.gifer.com/ZKZg.gif"
     loadingGif.id = "loadingGif"
+    //форматироание загрузки
+    loadingGif.style.width = "64px"
+    loadingGif.style.height = "64px"
+
+  
 
     div.appendChild(loadingGif)
+
 
 
     let videoFile = document.getElementById("videoFile").files[0]
@@ -79,12 +85,13 @@ async function workWithVideo(){
   
     var json = JSON.stringify(dataObj);
     
-    div = document.getElementById("videoDiv")
-    div.removeChild(loadingGif)
+    
     requestVideo(json)
   }
 
   function requestVideo(json){
+    //появление результата
+    
     var url = '/sendVideo';
       // Формируем запрос
       response = fetch(url, {
@@ -107,23 +114,30 @@ async function workWithVideo(){
     //console.log(Object.keys(data));
     //console.log(Object.keys(data["video"]));
     //console.log(Object.keys(data["frames"]));
-    //console.log(data["result"])
-    
+    let div = document.getElementById("videoDiv")
+    div.removeChild(loadingGif)
 
-    document.getElementById("result").textContent = data["result"]
+    //console.log(data["result"])
+   // console.log(data["video_name"])
+    document.getElementById("tableR").style.display = "block";
+    
+    classes = {
+      "Brick":"Кирпич",
+      "Concrete":"Бетон",
+      "Tree":"Дерево",
+      "priming":"Грунт"
+    }
+
+    document.getElementById("result").textContent = classes[data["result"]]
+
     document.getElementById("video_name").textContent = data["video_name"]
     var image = document.createElement("img")
     div = document.getElementById("videoDiv")
     div.appendChild(image)
     image.src = data["b64"]
-    if (data["result"] == "No class"){
-      image.src = "https://static.wikia.nocookie.net/memes9731/images/4/4e/Pepe-the-frog-internet-meme-sadness-know-your-meme-sad.jpg/revision/latest/thumbnail/width/360/height/360?cb=20200605055540&path-prefix=ru"
-    }
-
     return
   }
 
   function startStream(){
     document.getElementById("content").src = "http://localhost:7000/video"
-
   }

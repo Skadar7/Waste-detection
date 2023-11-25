@@ -8,6 +8,13 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
+classes = {
+    "Brick":"Кирпич",
+    "Concrete":"Бетон",
+    "Tree":"Дерево",
+    "priming":"Грунт"
+}
+
 parser.add_argument(
     "-v",
     "--video-path",
@@ -40,10 +47,10 @@ parser.add_argument(
 args = parser.parse_args()
 
 model = CDWnet(
-    hard_model=args.hard_detection_model, light_model=args.light_detection_model
+    hard_model_path=args.hard_detection_model
 )
 
 class_res, image = model.predict(args.video_path)
-# class_res, image = model.predict(args.image_path, mode='light_mode')
 
-print(f"CDW Class: {class_res}")
+
+print(f"CDW Class: {classes[class_res]}")
