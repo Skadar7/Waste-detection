@@ -97,4 +97,4 @@ python3 inference.py -v {path_to_video} -hd {path_to_weights}
 ## <a name="7">Ссылки </a>
 
 - [ссылка на веса модели детекции](https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing)&nbsp;
-- [ссылка на скринкаст](https://www.youtube.com/watch?v=dQw4w9WgXcQ)&nbsp;
+- [ссылка на скринкаст](https://drive.google.com/file/d/112A8YfgagN7-4wtWPQaYYGfqptcWKT4b/view?usp=sharing)&nbsp;
