@@ -116,6 +116,14 @@ async function workWithVideo(){
     div = document.getElementById("videoDiv")
     div.appendChild(image)
     image.src = data["b64"]
+    if (data["result"] == "No class"){
+      image.src = "https://static.wikia.nocookie.net/memes9731/images/4/4e/Pepe-the-frog-internet-meme-sadness-know-your-meme-sad.jpg/revision/latest/thumbnail/width/360/height/360?cb=20200605055540&path-prefix=ru"
+    }
 
     return
+  }
+
+  function startStream(){
+    document.getElementById("content").src = "http://localhost:7000/video"
+
   }

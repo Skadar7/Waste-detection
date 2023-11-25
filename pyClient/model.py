@@ -211,4 +211,4 @@ class CDWnet:
         if result:
             return self.post_process(result)
         else:
-            return None, None
+            return "No class", "https://static.wikia.nocookie.net/memes9731/images/4/4e/Pepe-the-frog-internet-meme-sadness-know-your-meme-sad.jpg/revision/latest/thumbnail/width/360/height/360?cb=20200605055540&path-prefix=ru"

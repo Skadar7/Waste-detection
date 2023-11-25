@@ -76,3 +76,11 @@ def convert_to_base64(frame: np.ndarray) -> str:
     success, buffer = cv2.imencode('.jpg', frame)
     base64_img = base64.b64encode(buffer)
     return base64_img
+
+def convert_tobytes(image: np.array):
+    _, buffer = cv2.imencode(".jpg", image)
+    buffer = buffer.tobytes()
+    return (
+        b"--frame\r\n"
+        b"Content-Type: image/jpeg\r\n\r\n" + buffer + b"\r\n"
+    )

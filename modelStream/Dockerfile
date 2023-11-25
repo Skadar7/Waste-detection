@@ -5,11 +5,11 @@ ADD ./requirements.txt ./requirements.txt
 
 # Install requirements
 RUN pip install -r requirements.txt
-
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+
 # Add files
 ADD . .
 
 EXPOSE 7000
 
-ENTRYPOINT ["python3", "server.py"]
+ENTRYPOINT ["python3", "serverStream.py"]

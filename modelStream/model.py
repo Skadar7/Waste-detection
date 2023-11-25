@@ -88,6 +88,9 @@ class CDWnet:
         """
         # если у нас режим обработки цельного видео, то detection_results хранит результаты для каждого кадра
         # где ключами словаря являются порядковые номера кадров
+
+
+
         if self.detection_mode == "hard_mode":
             vals = list(detection_results.values())
             cls_list = [i[0] for i in vals]
@@ -105,6 +108,8 @@ class CDWnet:
             frame = plot_boxes(
                 detection_results[4], detection_results[2], detection_results[3]
             )
+        if self.detection_mode == "lite_stream_mode":
+            return convert_tobytes(frame)
 
         base64_img = convert_to_base64(frame)
         return final_class, base64_img
@@ -177,6 +182,7 @@ class CDWnet:
         Yields:
             Iterator[dict]: Генератор предсказаний для стрима
         """
+        self.detection_mode = "lite_stream_mode"
         cap = cv2.VideoCapture(stream_path)
         while cap.isOpened():
             success, frame = cap.read()
@@ -189,7 +195,7 @@ class CDWnet:
             if detection_results:
                 yield self.post_process(detection_results)
             else:
-                yield None, convert_to_base64(frame)
+                yield  convert_tobytes(frame)
 
     def predict(self, path: str, mode: str = "hard_mode") -> tuple:
         """
