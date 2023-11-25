@@ -41,7 +41,7 @@
 ```Bash
 git clone https://github.com/Skadar7/Waste-detection.git
 ```
-2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing. В ```pyClient/weights``` должны находится веса модели для статичного режима работы (рекомендовано **detr-x-10ep-3v.pt**), а в ```modelStream/weights``` – для работы в прямом эфире (рекомендовано **yolo8s_30ep.pt**).
+2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1PoQqqHhpZxaRjLQRwCxJ7xmoGyvGAyt3?usp=sharing. В ```pyClient/weights``` должны находится веса модели для статичного режима работы (рекомендовано **detr-x-10ep-3v.pt**), а в ```modelStream/weights``` – для работы в прямом эфире (рекомендовано **yolo8s_30ep.pt**).
 
 3. Развертывание программы:
 ```Bash
@@ -96,5 +96,5 @@ python3 inference.py -v {path_to_video} -hd {path_to_weights}
 
 ## <a name="7">Ссылки </a>
 
-- [ссылка на веса модели детекции](https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing)&nbsp;
-- [ссылка на скринкаст](https://drive.google.com/file/d/112A8YfgagN7-4wtWPQaYYGfqptcWKT4b/view?usp=sharing)&nbsp;
+- [ссылка на веса модели детекции](https://drive.google.com/drive/folders/1PoQqqHhpZxaRjLQRwCxJ7xmoGyvGAyt3?usp=sharing)&nbsp;
+- [ссылка на скринкаст](https://drive.google.com/drive/folders/1BwoBICXg2sa_pRCZ6IFFrk211rVWjvbB?usp=sharing)&nbsp;
