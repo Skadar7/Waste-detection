@@ -43,12 +43,21 @@ git clone https://github.com/Skadar7/Waste-detection.git
 ```
 2. Скачайте веса для модели детекции https://drive.google.com/drive/folders/1MH0RCXQKsbwFLDVPivQwxBQ6OqXI-pSq?usp=sharing. В ```pyClient/weights``` должны находится веса модели для статичного режима работы (рекомендовано **detr-x-10ep-3v.pt**), а в ```modelStream/weights``` – для работы в прямом эфире (рекомендовано **yolo8s_30ep.pt**).
 
-3. Запуск контейнеров и сервера стриминга:
+3. Развертывание программы:
 ```Bash
 cd Waste-detection
 docker-compose build
 docker-compose up
 ```
+
+4. Для доступа к сайту необходимо перейти по ссылке http://localhost:4000
+
+### Запуск инференса
+```bash
+cd pyClient
+python3 inference.py -v {path_to_video} -hd {path_to_weights}
+```
+где path_to_video – путь к видео, path_to_weights – путь к весам модели
 
 ## <a name="4">Уникальность нашего решения </a>
 
@@ -76,7 +85,7 @@ docker-compose up
 </div>
 
 ## <a name="6">Команда </a>
-
+-
 *Состав команды "Оседлавшие тильт"*   
 
 - <h4><img align="center" height="25" src="https://user-images.githubusercontent.com/51875349/198863127-837491f2-b57f-4c75-9840-6a4b01236c7a.png">: @Ubludor, Маслов Денис - Fullstack-developer</h3>
